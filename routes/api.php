@@ -14,6 +14,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+//Route::middleware('auth:api')->get('/user', function (Request $request) {
+//    return $request->user();
+//});
+
+
+Route::group([
+    'middleware'    => ['api'],
+
+], function() {
+    Route::get('/category_list', 'CategoryController@index');
+    Route::get('/item_from_category/{category_name}', 'ItemController@item_from_category');
 });
+
+
